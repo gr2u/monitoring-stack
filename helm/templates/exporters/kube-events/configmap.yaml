@@ -1,0 +1,20 @@
+kind: ConfigMap
+metadata:
+  name: grafana-agent-eventhandler
+apiVersion: v1
+data:
+  agent.yaml: |
+    server:
+      log_level: info
+
+    integrations:
+      eventhandler:
+        cache_path: "/etc/eventhandler/eventhandler.cache"
+
+    logs:
+      configs:
+      - name: monitoring
+        clients:
+        - url:  http:/{{ .Release.Name }}-loki-distributed-distributor:3100/api/prom/push
+        positions:
+          filename: /tmp/positions0.yaml

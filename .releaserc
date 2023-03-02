@@ -1,0 +1,85 @@
+{
+  "branches": [
+    "main"
+  ],
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "releaseRules": [
+          {
+            "type": "brick",
+            "release": "major"
+          },
+          {
+            "type": "build",
+            "release": "minor"
+          },
+          {
+            "type": "ci",
+            "release": "patch"
+          },
+          {
+            "type": "chore",
+            "release": "patch"
+          },
+          {
+            "type": "docs",
+            "release": "patch"
+          },
+          {
+            "type": "refactor",
+            "release": "patch"
+          },
+          {
+            "type": "style",
+            "release": "patch"
+          },
+          {
+            "type": "test",
+            "release": "patch"
+          },
+          {
+            "type": "fix",
+            "release":"patch"
+          }
+        ]
+      }
+    ],
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    [
+      "@semantic-release/github",
+      {
+        "message": "release(version): Release ${nextRelease.version}"
+      }
+    ],
+    [
+      "semantic-release-helm",
+      {
+        "chartPath": "./helm",
+        "onlyUpdateVersion": true
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "verifyConditionsCmd": "npm run helm:verify",
+        "prepareCmd": "npm version ${nextRelease.version} --no-git-tag-version  --allow-same-version && npm run helm:pack",
+        "publishCmd": "npm run helm:push"
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "package.json",
+          "package-lock.json",
+          "CHANGELOG.md",
+          "./helm/Chart.yaml"
+        ],
+        "message": "release(version): Release ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ]
+  ]
+}

@@ -1,0 +1,26 @@
+name: Release
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PRIVATE_ACCESS_TOKEN }}
+          submodules: recursive
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+   
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Generate release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRIVATE_ACCESS_TOKEN }}
+          REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+          REGISTRY_PASSWORD: ${{ secrets.PRIVATE_ACCESS_TOKEN }}   

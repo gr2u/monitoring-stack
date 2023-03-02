@@ -1,0 +1,18 @@
+dependencies:
+- name: promtail
+  repository: https://grafana.github.io/helm-charts
+  version: 6.6.2
+- name: loki-distributed
+  repository: https://grafana.github.io/helm-charts
+  version: 0.66.2
+- name: kube-state-metrics
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 4.24.0
+- name: prometheus-node-exporter
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 4.4.2
+- name: grafana
+  repository: https://grafana.github.io/helm-charts
+  version: 6.43.5
+digest: sha256:493b34766e84a2ba8591cb7deb74bb29c351289876296d0e34b7de73fdff44c7
+generated: "2022-12-23T18:15:24.296109+02:00"

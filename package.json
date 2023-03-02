@@ -1,0 +1,37 @@
+{
+  "name": "monitoring-stack",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "helm:pack": "./.github/scripts/pack.sh",
+    "helm:push": "./.github/scripts/push.sh",
+    "helm:verify": "./.github/scripts/verify.sh"
+  },
+  "helm": {
+    "registry": "ghcr.io/gr2u/helm-charts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gr2u/monitoring-stack.git"
+  },
+  "files": [
+    "index.js",
+    "lib/**/*.js"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.5",
+    "@semantic-release/release-notes-generator": "^10.0.3",
+    "semantic-release": "^19.0.3",
+    "semantic-release-helm": "*"
+  },
+  "private": false
+}

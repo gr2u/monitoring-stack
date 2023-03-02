@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: grafana-agent-eventhandler
+  namespace: {{ .Release.Namespace }}
+spec:
+  serviceName: "grafana-agent-eventhandler-svc"
+  selector:
+    matchLabels:
+      name: grafana-agent-eventhandler
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: grafana-agent-eventhandler
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: agent
+        image: grafana/agent:main
+        imagePullPolicy: IfNotPresent
+        args:
+        - -config.file=/etc/agent/agent.yaml
+        - -enable-features=integrations-next
+        - -server.http.address=0.0.0.0:12345
+        command:
+        - /bin/agent
+        env:
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        ports:
+        - containerPort: 12345
+          name: http-metrics
+        volumeMounts:
+        - name: grafana-agent
+          mountPath: /etc/agent
+        - name: eventhandler-cache
+          mountPath: /etc/eventhandler
+      serviceAccount: grafana-agent-eventhandler
+      volumes:
+        - configMap:
+            name: grafana-agent-eventhandler
+          name: grafana-agent
+  volumeClaimTemplates:
+  - metadata:
+      name: eventhandler-cache
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
