@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/gr2u/monitoring-stack/compare/v1.0.1...v1.0.2) (2023-03-03)
+
+
+### Bug Fixes
+
+* **rules:**  example rule prometheus doesn't start ([f207826](https://github.com/gr2u/monitoring-stack/commit/f2078261b3e51403e85674a2223ef33a0380d2d2))
+
 ## [1.0.1](https://github.com/gr2u/monitoring-stack/compare/v1.0.0...v1.0.1) (2023-03-03)
 
 
