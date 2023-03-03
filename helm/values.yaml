@@ -926,8 +926,8 @@ grafana:
       server:
         root_url: "%(protocol)s://%(domain)s:%(http_port)s/grafana/"
         domain: '{{ if (and .Values.ingress.enabled .Values.ingress.hosts) }}{{ .Values.ingress.hosts  | first }}{{ else }}''''{{ end }}'
-      dashboards:
-        default_home_dashboard_path: /tmp/dashboards/example-dashboard.json
+      # dashboards:
+      #   default_home_dashboard_path: /tmp/dashboards/example-dashboard.json
   ## ForceDeployDatasources Create datasource configmap even if grafana deployment has been disabled
   ##
   forceDeployDatasources: false
