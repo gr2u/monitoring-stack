@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/gr2u/monitoring-stack/compare/v1.0.2...v1.0.3) (2023-03-03)
+
+
+### Bug Fixes
+
+* **dashboard:** deleted empty default dashboard ([9b7076a](https://github.com/gr2u/monitoring-stack/commit/9b7076a9dd31fb6c76cc3ca1b2c5eb8791288e1b))
+
 ## [1.0.2](https://github.com/gr2u/monitoring-stack/compare/v1.0.1...v1.0.2) (2023-03-03)
 
 
